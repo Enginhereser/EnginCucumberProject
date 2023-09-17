@@ -11,7 +11,6 @@ import java.util.List;
 
 public class MyStepdefs extends BaseSteps {
 
-
     @Given("user go to the Homepage")
     public void userGoToTheHomepage() {
         driver.get(PropertyReaders.read().get("url"));
