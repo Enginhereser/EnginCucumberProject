@@ -15,8 +15,6 @@ public class Driver {
         if (drivers.get()==null){
             switch (browser){
                 case FIREFOX -> drivers.set(createFireFox());
-                case EDGE -> drivers.set(createEdge());
-                case SAFARI -> drivers.set(createSafari());
                 default -> drivers.set(createChrome());
 
             }

@@ -10,14 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BaseSteps {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
     public BaseSteps() {
         driver = Driver.getDriver();
@@ -78,13 +77,6 @@ public class BaseSteps {
        sendKeys(until,text);
    }
 
-   public void waitForVisibilty(By locator){
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-   }
-   public void waitForVisibilty(WebElement element){
-        wait.until(ExpectedConditions.visibilityOfAllElements(element));
-   }
-
    public static void takeScreenShot(String filename){
         filename+="_"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss"));
         String patht="test-output/screenshots/"+filename+".png";
@@ -100,18 +92,6 @@ public class BaseSteps {
         takeScreenShot("screenshot");
    }
 
-   public static void takeScreenShotOfElement(WebElement element,String filename){
-        String path="test-output/screenshot/"+filename+".png";
-        filename+="_"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss"));
-        File srcFile=element.getScreenshotAs(OutputType.FILE);
-        File target=new File(path);
-       try {
-           FileUtils.copyFile(srcFile,target);
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
-
-   }
    public void sleep(long milis){
        try {
            Thread.sleep(milis);
@@ -120,29 +100,9 @@ public class BaseSteps {
        }
    }
 
-    /**
-     *
-     * @param locator % ile yazilan locotor i stringe at
-     * @param text & yarine ne yazmak istiyorsak
-     * @return
-     */
-   public static By xpath(String locator,String text){
-       //String TOP_MENU = "//*[@id='header-wrap']//a[contains(.,'%s')]";
-        return By.xpath(String.format(locator,text));
-   }
-
-    public String assertColor(WebElement element){
-       String befor=element.getCssValue("background");
-        Color color = Color.fromString(befor);
-        return color.asHex();
-    }
     public void hover(WebElement element){
        new Actions(driver)
                .moveToElement(element).perform();
-    }
-    public WebElement menuLocator(String text){
-        WebElement element = driver.findElement(By.xpath("//nav[@class='primary-menu']/ul//li/a/div[contains(text(),'" + text + "')]//ancestor::a"));
-        return element;
     }
 
 }

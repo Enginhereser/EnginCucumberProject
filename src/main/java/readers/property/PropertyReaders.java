@@ -10,13 +10,13 @@ public class PropertyReaders {
 
     Properties properties=new Properties();
     FileReader reader;
-    FileWriter writer;
+
     String file;
 
-    public  PropertyReaders(String fileName){
+    public PropertyReaders(String fileName){
 
         try {
-            file="src/test/resources/"+fileName+".properties";
+            file="src/test/resources/datafiles/"+fileName+".properties";
             reader=new FileReader(file);
             properties.load(reader);
         } catch (IOException e) {
