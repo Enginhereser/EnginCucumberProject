@@ -104,5 +104,18 @@ public class BaseSteps {
        new Actions(driver)
                .moveToElement(element).perform();
     }
+    public void scrollBy(int y){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0, " + y + ")");
+    }
+
+    public void scrollByElement(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public void scrollElement(WebElement element){
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView()",element);
+    }
 
 }

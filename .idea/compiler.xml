@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Finanz Informatik" />
+        <module name="Deloitte" />
         <module name="MyCucumberFirstFrameWork" />
       </profile>
     </annotationProcessing>
